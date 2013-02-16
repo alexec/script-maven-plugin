@@ -6,6 +6,16 @@
     <packaging>maven-plugin</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
+    <name>Script Plugin</name>
+
+    <description>
+        An API compatible version of the (defunt?) Codehaus plugin (http://mojo.codehaus.org/script-maven-plugin/)
+    </description>
+
+    <scm>
+        <url>https://github.com/alexec/script-maven-plugin</url>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
