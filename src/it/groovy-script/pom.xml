@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alexecollins.maven.plugin</groupId>
-    <artifactId>script-maven-plugin-default</artifactId>
+    <artifactId>script-maven-plugin-groovy-script</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -29,13 +29,7 @@
                         <phase>package</phase>
                         <goals><goal>execute</goal></goals>
                         <configuration>
-                            <language>groovy</language>
-                            <engine>org.codehaus.groovy.bsf.GroovyEngine</engine>
-                            <passProjectAsProperty>true</passProjectAsProperty>
-                            <script>
-                                System.out.println("creating marker file");
-                                new File("marker").createNewFile()
-                            </script>
+                            <scriptFile>script.groovy</scriptFile>
                         </configuration>
                     </execution>
                 </executions>
