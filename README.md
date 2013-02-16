@@ -37,12 +37,14 @@ Example 3 - Custom Script (JRuby)
             <goals><goal>execute</goal></goals>
             <configuration>
                 <language>ruby</language>
+                <!-- you must state the engine -->
                 <engine>org.jruby.javasupport.bsf.JRubyEngine</engine>
                 <scriptFile>script.rb</scriptFile>
             </configuration>
         </execution>
     </executions>
     <dependencies>
+        <!-- and add the engine as a dependency -->
         <dependency>
             <groupId>org.jruby</groupId>
             <artifactId>jruby</artifactId>
