@@ -11,32 +11,36 @@ import java.io.File;
 import java.io.FileReader;
 
 /**
- * Execute a JSR-223 script
+ * Execute a script.
  *
  * @goal execute
  */
 public class ExecuteMojo extends AbstractMojo {
 
 	/**
-	 * The language, e.g. "groovy"
+	 * The language, e.g. "groovy".
 	 *
 	 * @parameter
 	 */
 	public String language = null;
 
 	/**
-	 * The engine to use, e.g.
+	 * The engine to use, e.g. "org.codehaus.groovy.bsf.GroovyEngine".
 	 *
 	 * @parameter
 	 */
 	public String engine = null;
 
 	/**
+	 * A script to execute, e.g. "println('hello world')".
+	 *
 	 * @parameter
 	 */
 	public String script = null;
 
 	/**
+	 * A file to execute, e.g. "hello-world.groovy".
+	 *
 	 * @parameter
 	 */
 	public File scriptFile = null;
@@ -60,7 +64,7 @@ public class ExecuteMojo extends AbstractMojo {
 	private void execute2() throws Exception {
 
 		if (script == null && scriptFile == null) {
-			throw new MojoFailureException("either script of scriptFile must be provided");
+			throw new MojoFailureException("either script or scriptFile must be provided");
 		}
 		if (script != null && scriptFile != null) {
 			throw new MojoFailureException("only one of script of scriptFile may be provided, but NOT both");

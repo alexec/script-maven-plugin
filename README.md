@@ -6,7 +6,7 @@ By default, the project is bound as a bean.
 
 Examples
 ===
-Example 1 - Inline BeanShell Script
+Example 1 - BeanShell
 ---
     <execution>
         <phase>package</phase>
@@ -19,17 +19,28 @@ Example 1 - Inline BeanShell Script
         </configuration>
     </execution>
 
-Example 2 - Groovy Script
+Example 2 - Groovy
 ---
-    <execution>
-        <phase>package</phase>
-        <goals><goal>execute</goal></goals>
-        <configuration>
-            <!-- language auto-detected -->
-            <scriptFile>script.groovy</scriptFile>
-        </configuration>
-    </execution>
-Example 3 - Custom Script (JRuby)
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals><goal>execute</goal></goals>
+            <configuration>
+                <!-- language auto-detected -->
+                <scriptFile>script.groovy</scriptFile>
+            </configuration>
+        </execution>
+    </executions>
+    <dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>1.8.3</version>
+        </dependency>
+    </dependencies>
+
+Example 3 - JRuby
 ---
     <executions>
         <execution>
@@ -51,6 +62,10 @@ Example 3 - Custom Script (JRuby)
             <version>1.7.2</version>
         </dependency>
     </dependencies>
+
+Known Issues
+===
+- It'd be better to use JSR-223, but I need to find a reliable framework first!
 
 Appendices
 ===
