@@ -2,7 +2,7 @@ Overview
 ===
 This plugin allows you to execute scripts as part of your Maven build. It uses Apache Bean Scripting Framework under the hood, so you can use any languages supported by that framework. Support for some languages is in-built. Custom languages (e.g. JRuby) can be added with a couple of XML.
 
-See [this list](http://svn.apache.org/repos/asf/commons/proper/bsf/trunk/src/main/java/org/apache/bsf/Languages.properties) for languages, and (this list)[http://en.wikipedia.org/wiki/List_of_Java_scripting_languages] of scripting languages on the JVM.
+See [this list](http://svn.apache.org/repos/asf/commons/proper/bsf/trunk/src/main/java/org/apache/bsf/Languages.properties) for languages, and [this list](http://en.wikipedia.org/wiki/List_of_Java_scripting_languages) of scripting languages on the JVM.
 
 By default, the project is bound as a bean.
 
@@ -50,18 +50,50 @@ Example 3 - JRuby
             <goals><goal>execute</goal></goals>
             <configuration>
                 <language>ruby</language>
-                <!-- you must state the engine -->
-                <engine>org.jruby.javasupport.bsf.JRubyEngine</engine>
                 <scriptFile>script.rb</scriptFile>
             </configuration>
         </execution>
     </executions>
     <dependencies>
-        <!-- and add the engine as a dependency -->
         <dependency>
             <groupId>org.jruby</groupId>
             <artifactId>jruby</artifactId>
             <version>1.7.2</version>
+        </dependency>
+    </dependencies>
+
+Example 4 - JavaScript
+---
+This example also includes an additional dependency.
+
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals><goal>execute</goal></goals>
+            <configuration>
+                <language>javascript</language>
+                <script>
+                    importPackage(java.lang);
+                    importPackage(org.apache.commons.io);
+                    importPackage(java.io);
+
+                    System.out.println(project.getName());
+                    FileUtils.touch(new File("marker"));
+                </script>
+            </configuration>
+        </execution>
+    </executions>
+    <dependencies>
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+            <version>1.7R3</version>
+        </dependency>
+        <!-- additional import for doing file I/O -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
         </dependency>
     </dependencies>
 

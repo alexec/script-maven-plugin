@@ -1,9 +1,6 @@
 package com.alexecollins.maven.plugin;
 
 import org.apache.bsf.BSFException;
-import scala.tools.nsc.Global;
-import scala.tools.nsc.Settings;
-import scala.tools.nsc.reporters.ConsoleReporter;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,9 +37,11 @@ public class ScalaEngine extends org.apache.bsf.util.BSFEngineImpl {
 			throw new BSFException("failed to create tmp dir: " + e.getMessage());
 		}
 
+		/*
 		final Global global = new Global(new ConsoleReporter(new Settings()));
 		final Global.Run run = global.new Run();
 		run.compile(scala.collection.immutable.List.fromString(tmp.getPath(), ','));
+		*/
 
 		throw new UnsupportedOperationException("not supported");
 	}

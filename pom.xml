@@ -41,10 +41,25 @@
             <artifactId>maven-project</artifactId>
             <version>2.2.1</version>
         </dependency>
+        <!-- runtime deps that must be provided -->
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-compiler</artifactId>
             <version>2.9.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+            <version>1.7R3</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- end runtime deps -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -83,10 +98,14 @@
                                     <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
                                     <postBuildHookScript>verify</postBuildHookScript>
                                     <showErrors>true</showErrors>
+                                    <!--
                                      <pomIncludes>
-                                         <pomInclude>scala-script/pom.xml</pomInclude>
+                                         <pomInclude>javascript/pom.xml</pomInclude>
                                      </pomIncludes>
+                                    -->
                                     <pomExcludes>
+                                        <!-- doesn't work .. yet -->
+                                        <pomExclude>scala-script/pom.xml</pomExclude>
                                         <pomExclude>jacl/pom.xml</pomExclude>
                                     </pomExcludes>
                                 </configuration>

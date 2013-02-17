@@ -6,6 +6,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
+import org.mozilla.javascript.Context;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -84,7 +85,7 @@ public class ExecuteMojo extends AbstractMojo {
 		}
 
 		if (language == null) {
-			throw new MojoFailureException("language not specified and cannot determine from scriptFile (if provided)");
+			language = "beanshell";
 		}
 
 		if (engine != null) {
@@ -92,6 +93,10 @@ public class ExecuteMojo extends AbstractMojo {
 		}
 
 		final BSFManager mgr = new BSFManager();
+
+		if (language.equals("javascript")) {
+			Context.enter();
+		}
 
 		mgr.loadScriptingEngine(language);
 		try {

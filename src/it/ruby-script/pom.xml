@@ -29,8 +29,6 @@
                         <phase>package</phase>
                         <goals><goal>execute</goal></goals>
                         <configuration>
-                            <language>ruby</language>
-                            <engine>org.jruby.javasupport.bsf.JRubyEngine</engine>
                             <scriptFile>script.rb</scriptFile>
                         </configuration>
                     </execution>
