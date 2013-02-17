@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alexecollins.maven.plugin</groupId>
-    <artifactId>script-maven-plugin-groovy</artifactId>
+    <artifactId>script-maven-plugin-jacl</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -29,20 +29,27 @@
                         <phase>package</phase>
                         <goals><goal>execute</goal></goals>
                         <configuration>
-                            <language>groovy</language>
-                            <engine>org.codehaus.groovy.bsf.GroovyEngine</engine>
+                            <language>tcl</language>
+                            <engine>org.apache.bsf.engines.jacl.JaclEngine</engine>
                             <script>
-                                println(project.getName());
-                                new File("marker").createNewFile()
+                                puts [project name]
+                                set c [open marker w]
+                                puts $c ""
+                                close $c
                             </script>
                         </configuration>
                     </execution>
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy</artifactId>
-                        <version>1.8.3</version>
+                        <groupId>jacl</groupId>
+                        <artifactId>jacl</artifactId>
+                        <version>1.2.6</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>jacl</groupId>
+                        <artifactId>tcljava</artifactId>
+                        <version>1.2.6</version>
                     </dependency>
                 </dependencies>
             </plugin>
