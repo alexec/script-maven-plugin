@@ -1,0 +1,6 @@
+import java.io.*;
+
+w=new File(basedir, "marker");
+if (!w.exists()) {
+    throw new Exception("marker file " + w.getCanonicalPath() + " not created");
+}
