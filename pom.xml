@@ -41,6 +41,11 @@
             <artifactId>maven-project</artifactId>
             <version>2.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.9.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -77,7 +82,10 @@
                                     <settingsFile>src/it/settings.xml</settingsFile>
                                     <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
                                     <postBuildHookScript>verify</postBuildHookScript>
-
+                                    <showErrors>true</showErrors>
+                                     <pomIncludes>
+                                         <pomInclude>scala-script/pom.xml</pomInclude>
+                                     </pomIncludes>
                                     <pomExcludes>
                                         <pomExclude>jacl/pom.xml</pomExclude>
                                     </pomExcludes>

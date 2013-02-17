@@ -1,5 +1,6 @@
 package com.alexecollins.maven.plugin;
 
+import org.apache.bsf.BSFException;
 import org.apache.bsf.BSFManager;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -70,12 +71,12 @@ public class ExecuteMojo extends AbstractMojo {
 			throw new MojoFailureException("only one of script of scriptFile may be provided, but NOT both");
 		}
 
-		if (engine != null) {
-			BSFManager.registerScriptingEngine(language, engine, new String[]{language});
-		}
-
 		if (language == null && scriptFile != null) {
-			language = BSFManager.getLangFromFilename(scriptFile.getName());
+			try {
+				language = BSFManager.getLangFromFilename(scriptFile.getName());
+			} catch (BSFException e) {
+				//
+			}
 			final int i = scriptFile.getName().indexOf(".");
 			if (language == null && i >= 0) {
 				language = scriptFile.getName().substring(i+1);
@@ -86,10 +87,22 @@ public class ExecuteMojo extends AbstractMojo {
 			throw new MojoFailureException("language not specified and cannot determine from scriptFile (if provided)");
 		}
 
+		if (engine != null) {
+			BSFManager.registerScriptingEngine(language, engine, new String[]{language});
+		}
+
 		final BSFManager mgr = new BSFManager();
 
 		mgr.loadScriptingEngine(language);
-		mgr.declareBean("project", project, MavenProject.class);
+		try {
+			mgr.declareBean("project", project, MavenProject.class);
+		} catch (BSFException e) {
+			if (!e.getMessage().contains("does not support")) {
+				throw e;
+			} else {
+				getLog().warn(e.getMessage());
+			}
+		}
 
 		getLog().info("executing " + language + " script");
 

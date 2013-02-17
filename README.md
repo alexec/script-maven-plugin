@@ -2,7 +2,7 @@ Overview
 ===
 This plugin allows you to execute scripts as part of your Maven build. It uses Apache Bean Scripting Framework under the hood, so you can use any languages supported by that framework. Support for some languages is in-built. Custom languages (e.g. JRuby) can be added with a couple of XML.
 
-See [this list](http://svn.apache.org/repos/asf/commons/proper/bsf/trunk/src/main/java/org/apache/bsf/Languages.properties) for languages.
+See [this list](http://svn.apache.org/repos/asf/commons/proper/bsf/trunk/src/main/java/org/apache/bsf/Languages.properties) for languages, and (this list)[http://en.wikipedia.org/wiki/List_of_Java_scripting_languages] of scripting languages on the JVM.
 
 By default, the project is bound as a bean.
 
@@ -73,7 +73,7 @@ Appendices
 ===
 Appendix A - Languages Table
 ---
-    Language     Engine                                                  File Extensions  Activity/Popularity;
+    Language     Engine                                                  File Extensions  Activity/Popularity
     ---          ---                                                     ---              ---
     javascript   org.apache.bsf.engines.javascript.JavaScriptEngine      js               High/High
     jacl         org.apache.bsf.engines.jacl.JaclEngine                  jacl,tcl         High/Low
@@ -92,7 +92,7 @@ Appendix A - Languages Table
     xslt         org.apache.bsf.engines.xslt.XSLTEngine                  xslt             High/High
     pnuts        pnuts.ext.PnutsBSFEngine                                pnut             Low/Low
     beanbasic    org.apache.bsf.engines.beanbasic.BeanBasicEngine        bb               Low/Low
-    beanshell    bsh.util.BeanShellBSFEngine                             bsh              High/High
+    beanshell    bsh.util.BeanShellBSFEngine                             bsh              High/Med
     ruby         org.jruby.javasupport.bsf.JRubyEngine                   rb               High/Med
     judoscript   com.judoscript.BSFJudoEngine                            judo,jud         Low/Low
 
