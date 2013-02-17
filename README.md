@@ -79,6 +79,7 @@ Appendix A - Languages Table
     jacl         org.apache.bsf.engines.jacl.JaclEngine                  jacl,tcl         High/Low
     netrexx      org.apache.bsf.engines.netrexx.NetRexxEngine            nrx              Med/Low
     groovy       org.codehaus.groovy.bsf.GroovyEngine                    groovy           High/High
+    scala        com.alexecollins.maven.plugin.ScalaEnginge              scala            High/High
     java         org.apache.bsf.engines.java.JavaEngine                  java             High/High
     javaclass    org.apache.bsf.engines.javaclass.JavaClassEngine        class            High/High
     bml          org.apache.bml.ext.BMLEngine                            bml              Low/Low
