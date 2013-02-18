@@ -20,6 +20,15 @@ Example 1 - BeanShell
             </script>
         </configuration>
     </execution>
+    ...
+    <dependencies>
+        <dependency>
+            <groupId>org.beanshell</groupId>
+            <artifactId>bsh</artifactId>
+            <version>2.0b5</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 Example 2 - Groovy
 ---
