@@ -12,8 +12,25 @@
         An API compatible version of the (defunct?) Codehaus plugin (http://mojo.codehaus.org/script-maven-plugin/)
     </description>
 
+	<url>https://github.com/alexec/script-maven-plugin</url>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License, version 3 (GPL-3.0)</name>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>alex.collins</id>
+            <name>Alex Collins</name>
+            <email>alex.e.c@gmail.com</email>
+        </developer>
+    </developers>
+
     <scm>
         <url>https://github.com/alexec/script-maven-plugin</url>
+        <connection>scm:git:https://github.com/alexec/script-maven-plugin</connection>
     </scm>
 
     <properties>
@@ -75,6 +92,32 @@
                     <source>1.5</source>
                     <target>1.5</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
