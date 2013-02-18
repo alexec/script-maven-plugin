@@ -4,7 +4,9 @@ This plugin allows you to execute scripts as part of your Maven build. It uses A
 
 See [this list](http://svn.apache.org/repos/asf/commons/proper/bsf/trunk/src/main/java/org/apache/bsf/Languages.properties) for languages, and [this list](http://en.wikipedia.org/wiki/List_of_Java_scripting_languages) of scripting languages on the JVM.
 
-By default, the project is bound as a bean.
+By default, the following are bound as a beans:
+
+    project, artifactMetadataSource, artifactResolver, artifactFactory, localRepository
 
 Examples
 ===
@@ -105,6 +107,27 @@ This example also includes an additional dependency.
             <version>2.4</version>
         </dependency>
     </dependencies>
+
+Example 5 - Listing Beans
+---
+You might wish to list the beans available:
+
+    mvn script:list-beans
+
+Example 6 - Complex Javascript
+---
+You can do some funky stuff with the beans:
+
+    importPackage(java.lang);
+    importPackage(java.io);
+
+    System.out.println(project.getName());
+
+    var a = artifactFactory.createArtifact("commons-io", "commons-io", "2.4", "compile", "jar");
+    artifactResolver.resolve(a, project.getRemoteArtifactRepositories(), localRepository);
+
+    System.out.println("locally at " + a.getFile());
+    System.out.println("versions " + artifactMetadataSource.retrieveAvailableVersions(a, localRepository, project.getRemoteArtifactRepositories()));
 
 Known Issues
 ===

@@ -2,22 +2,22 @@ package com.alexecollins.maven.plugin;
 
 import org.apache.bsf.BSFException;
 import org.apache.bsf.BSFManager;
-import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.project.MavenProject;
 import org.mozilla.javascript.Context;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Map;
 
 /**
  * Execute a script.
  *
  * @goal execute
+ * @since 1.0.0
  */
-public class ExecuteMojo extends AbstractMojo {
+public class ExecuteMojo extends AbstractScriptMojo {
 
 	/**
 	 * The language, e.g. "groovy".
@@ -46,13 +46,6 @@ public class ExecuteMojo extends AbstractMojo {
 	 * @parameter
 	 */
 	public File scriptFile = null;
-
-	/**
-	 * @parameter expression="${project}"
-	 * @required
-	 * @readonly
-	 */
-	public MavenProject project;
 
     public void execute() throws MojoExecutionException, MojoFailureException {
 	    try {
@@ -100,7 +93,9 @@ public class ExecuteMojo extends AbstractMojo {
 
 		mgr.loadScriptingEngine(language);
 		try {
-			mgr.declareBean("project", project, MavenProject.class);
+			for (Map.Entry<String, Object> entry : getBeans().entrySet()) {
+				mgr.declareBean(entry.getKey(), entry.getValue(), entry.getValue().getClass());
+			}
 		} catch (BSFException e) {
 			if (!e.getMessage().contains("does not support")) {
 				throw e;
