@@ -30,7 +30,8 @@
 
     <scm>
         <url>https://github.com/alexec/script-maven-plugin</url>
-        <connection>scm:git:https://github.com/alexec/script-maven-plugin</connection>
+        <connection>scm:git:git@github.com:alexec/script-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:alexec/script-maven-plugin.git</developerConnection>
     </scm>
 
     <properties>
