@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alexecollins.maven.plugin</groupId>
     <artifactId>script-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Script Plugin</name>
 
@@ -32,7 +31,7 @@
         <url>https://github.com/alexec/script-maven-plugin</url>
         <connection>scm:git:git@github.com:alexec/script-maven-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:alexec/script-maven-plugin.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>1.0.0</tag>
     </scm>
 
     <issueManagement>
@@ -158,7 +157,6 @@
                 <configuration>
                     <tagNameFormat>@{project.version}</tagNameFormat>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <arguments>-Psonatype-oss-release</arguments>
                 </configuration>
             </plugin>
         </plugins>
