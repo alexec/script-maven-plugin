@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/alexec/script-maven-plugin.png)](https://api.travis-ci.org/alexec/script-maven-plugin)
+
 Overview
 ===
 This plugin allows you to execute scripts as part of your Maven build. It uses Apache Bean Scripting Framework under the hood, so you can use any languages supported by that framework. Support for some languages is in-built. Custom languages (e.g. JRuby) can be added with a couple of XML.
