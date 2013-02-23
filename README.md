@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/alexec/script-maven-plugin.png)](https://api.travis-ci.org/alexec/script-maven-plugin)
+[![Build Status](https://api.travis-ci.org/alexec/script-maven-plugin.png)](https://travis-ci.org/alexec/script-maven-plugin)
 
 Overview
 ===
