@@ -8,7 +8,7 @@ See [this list](http://svn.apache.org/repos/asf/commons/proper/bsf/trunk/src/mai
 
 By default, the following are bound as a beans:
 
-    project, artifactMetadataSource, artifactResolver, artifactFactory, localRepository
+    project, artifactMetadataSource, artifactResolver, artifactFactory, localRepository, log
 
 Examples
 ===

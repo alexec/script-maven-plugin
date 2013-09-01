@@ -51,6 +51,7 @@ public abstract class AbstractScriptMojo extends AbstractMojo {
 		beans.put("artifactFactory", artifactFactory);
 		beans.put("artifactResolver", artifactResolver);
 		beans.put("localRepository", localRepository);
+		beans.put("log", getLog());
 
 		return beans;
 	}

@@ -30,7 +30,7 @@
                         <goals><goal>execute</goal></goals>
                         <configuration>
                             <script>
-                                System.out.println(project.getName());
+                                log.info(project.getName());
                                 new File("marker").createNewFile()
                             </script>
                         </configuration>
