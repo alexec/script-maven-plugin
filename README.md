@@ -2,18 +2,73 @@
 
 Overview
 ===
-This plugin allows you to execute scripts as part of your Maven build. It uses Apache Bean Scripting Framework under the hood, so you can use any languages supported by that framework. Support for some languages is in-built. Custom languages (e.g. JRuby) can be added with a couple of XML.
+This plugin allows you to execute scripts as part of your Maven build. It uses the [Apache Bean Scripting Framework](https://commons.apache.org/proper/commons-bsf/) (BSF) under the hood, so you can use any languages supported by that framework. Support for some languages is in-built. Custom languages (e.g. JRuby) can be added with a couple of XML statements.
 
-See [this list](http://svn.apache.org/repos/asf/commons/proper/bsf/trunk/src/main/java/org/apache/bsf/Languages.properties) for languages, and [this list](http://en.wikipedia.org/wiki/List_of_Java_scripting_languages) of scripting languages on the JVM.
+You might want to see the [list of BSF languages](http://svn.apache.org/repos/asf/commons/proper/bsf/trunk/src/main/java/org/apache/bsf/Languages.properties) and the [list of scripting languages on the JVM](http://en.wikipedia.org/wiki/List_of_Java_scripting_languages).
 
-By default, the following are bound as a beans:
+By default, the following Maven beans are bound as variables for the script:
 
-    project, artifactMetadataSource, artifactResolver, artifactFactory, localRepository, log
+`project` `artifactMetadataSource` `artifactResolver` `artifactFactory` `localRepository` `log`
+
+Usage
+===
+
+Add to the `<build><plugins>` section of your `pom.xml` the equivalent of:
+
+```xml
+<build>
+    <plugins>
+        <!-- ... -->
+        <plugin>
+            <groupId>com.alexecollins.maven.plugin</groupId>
+            <artifactId>script-maven-plugin</artifactId>
+            <version>1.0.0</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                    <goal>execute</goal>
+                </goals>
+                <configuration>
+                  <language>groovy</language>
+                  <script>
+                    System.out.println(project.getName());
+                  </script>
+                  <!-- or.. 
+                  <scriptFile>script.groovy</scriptFile>
+                  -->
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                  <groupId>org.codehaus.groovy</groupId>
+                  <artifactId>groovy-bsf</artifactId>
+                  <version>2.4.3</version>
+              </dependency>
+            </dependencies>
+        </plugin>
+    
+    </plugins>
+</build>
+```
+
+To find the latest `<version>` above, see the [script-maven-plugin releases](https://github.com/alexec/script-maven-plugin/releases) or [browse Maven central](http://repo1.maven.org/maven2/com/alexecollins/maven/plugin/script-maven-plugin/).
+
+Modify `<dependencies>` and `<configuration>` for the chosen scripting language. 
+
+If you use `<scriptFile>`, the language is detected from the filename, 
+while with the inline `<script>` you need to 
+also specify `<language>`.
 
 Examples
 ===
+
+
 Example 1 - BeanShell
 ---
+
+```xml
     <execution>
         <phase>package</phase>
         <goals><goal>execute</goal></goals>
@@ -33,9 +88,12 @@ Example 1 - BeanShell
             <scope>provided</scope>
         </dependency>
     </dependencies>
+```
 
 Example 2 - Groovy
 ---
+
+```xml
     <executions>
         <execution>
             <phase>package</phase>
@@ -47,16 +105,18 @@ Example 2 - Groovy
         </execution>
     </executions>
     <dependencies>
-    <dependencies>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy</artifactId>
-            <version>1.8.3</version>
+            <artifactId>groovy-bsf</artifactId>
+            <version>2.4.3</version>
         </dependency>
     </dependencies>
+```
 
 Example 3 - JRuby
 ---
+
+```xml
     <executions>
         <execution>
             <phase>package</phase>
@@ -71,14 +131,16 @@ Example 3 - JRuby
         <dependency>
             <groupId>org.jruby</groupId>
             <artifactId>jruby</artifactId>
-            <version>1.7.2</version>
+            <version>1.7.9</version>
         </dependency>
     </dependencies>
+```
 
 Example 4 - JavaScript
 ---
 This example also includes an additional dependency.
 
+```xml
     <executions>
         <execution>
             <phase>package</phase>
@@ -100,7 +162,7 @@ This example also includes an additional dependency.
         <dependency>
             <groupId>org.mozilla</groupId>
             <artifactId>rhino</artifactId>
-            <version>1.7R3</version>
+            <version>1.7R5</version>
         </dependency>
         <!-- additional import for doing file I/O -->
         <dependency>
@@ -109,6 +171,7 @@ This example also includes an additional dependency.
             <version>2.4</version>
         </dependency>
     </dependencies>
+```    
 
 Example 5 - Listing Beans
 ---
@@ -120,6 +183,7 @@ Example 6 - Complex Javascript
 ---
 You can do some funky stuff with the beans:
 
+```javascript
     importPackage(java.lang);
     importPackage(java.io);
 
@@ -130,6 +194,7 @@ You can do some funky stuff with the beans:
 
     System.out.println("locally at " + a.getFile());
     System.out.println("versions " + artifactMetadataSource.retrieveAvailableVersions(a, localRepository, project.getRemoteArtifactRepositories()));
+```
 
 Known Issues
 ===
