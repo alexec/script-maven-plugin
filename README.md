@@ -82,9 +82,9 @@ Example 1 - BeanShell
     ...
     <dependencies>
         <dependency>
-            <groupId>org.beanshell</groupId>
+            <groupId>org.apache-extras.beanshell</groupId>
             <artifactId>bsh</artifactId>
-            <version>2.0b5</version>
+            <version>2.0b6</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
